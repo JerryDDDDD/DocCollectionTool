@@ -102,14 +102,14 @@ layui.use(['table', 'layer'], function () {
                 }, function (index) {
                     //发送删除请求到后台
                     $.ajax({
-                        url: "/admin/friendLink/delFriendLink",
+                        url: "/commissary/deadLine",
                         type: "post",
                         data: {
-                            friendLinkId: data.id
+                            jobId: data.id
                         },
                         async: false,
-                        success: function () {
-                            table.reload('friendLinkTable');
+                        success: function (res) {
+                            layer.msg(res.msg);
                         },
                         error: function () {
 

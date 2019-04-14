@@ -145,6 +145,7 @@ public class CommissaryController {
         }
     }
 
+    // 统计收集信息
     @ResponseBody
     @RequestMapping("/getDetail")
     public ToolResult getJobDetail(String jobId, String clazzNum) {
@@ -156,6 +157,7 @@ public class CommissaryController {
         }
     }
 
+    // 打包上传的文件
     @ResponseBody
     @RequestMapping("/packageFile")
     public ToolResult packageFile(String jobId){
@@ -167,12 +169,23 @@ public class CommissaryController {
         }
     }
 
+    // 下载文件
     @RequestMapping("/download")
     public void downloadZip(String jobId, HttpServletRequest request, HttpServletResponse response) {
         commissaryService.download(jobId, request, response);
     }
 
 
+    @ResponseBody
+    @RequestMapping("/deadLine")
+    public ToolResult deadLine(String jobId) {
+        try {
+            return commissaryService.deadLine(jobId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ToolResult.build(404, "截止失败");
+        }
+    }
 
     @GetMapping("toUpload")
     public String toFileUpload() {

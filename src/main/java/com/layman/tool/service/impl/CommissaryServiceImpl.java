@@ -253,6 +253,7 @@ public class CommissaryServiceImpl implements CommissaryService {
         IOtools.downloadZipFile(TOOL_FILE_ZIP_BASE_PATH, job.getJobName()+".zip", response);
     }
 
+    // 打包文件
     @Override
     public ToolResult packageFile(String jobId) {
         try {
@@ -266,6 +267,20 @@ public class CommissaryServiceImpl implements CommissaryService {
         } catch (Exception e) {
             e.printStackTrace();
             return ToolResult.build(404, "打包失败");
+        }
+    }
+
+    // 截止文件
+    @Override
+    public ToolResult deadLine(String jobId) {
+        try {
+            Job job = jobRepository.findFirstById(jobId);
+            job.setIsFinished(1);
+            jobRepository.save(job);
+            return ToolResult.build(200, "成功截止");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ToolResult.build(404, "截止失败");
         }
     }
 }

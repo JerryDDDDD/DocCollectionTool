@@ -31,4 +31,6 @@ public interface CommissaryService {
     void download(String jobId, HttpServletRequest request, HttpServletResponse response);
 
     ToolResult packageFile(String jobId);
+
+    ToolResult deadLine(String jobId);
 }

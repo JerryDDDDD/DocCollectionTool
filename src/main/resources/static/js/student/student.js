@@ -47,7 +47,7 @@ layui.use('form', function () {
             }
         });
     });
-//String jobId, String studentName
+
     $("#uploadJob").on('click', function () {
         var jobId = $("#job").val();
         var studentName = $("#studentNum").val();
