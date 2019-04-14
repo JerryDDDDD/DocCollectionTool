@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>404--layui后台管理模板 2.0</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="/static/layui/layui/css/layui.css" media="all" />
+    <link rel="stylesheet" href="/static/layui/css/public.css" media="all" />
+    <link rel="stylesheet" href="/static/css/page.css" media="all" />
+    <script type="text/javascript" charset="utf-8" src="/static/layui/layui/layui.js"></script>
+</head>
+<body class="childrenBody">
+<div class="page">
+    <div class="info-panel">
+        <fieldset class="layui-elem-field layui-field-title">
+            <legend>
+                <i>
+                    <!--<img src="${pageContext.request.contextPath}/resources/images/F-link.png">-->
+                </i>
+                作业列表
+            </legend>
+        </fieldset>
+        <div class="layui-tab-item layui-show">
+            <div class="layui-form">
+                <table class="layui-table" id="jobList" lay-filter="toolBar">
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script type="text/javascript" src="/static/js/commissary/jobList.js"></script>
+<script type="text/html" id="toolBar">
+    <a class="layui-btn layui-btn-xs layui-bg-green" lay-event="detail">详情</a>
+    <a class="layui-btn layui-btn-xs layui-bg-red" lay-event="deadLine">截止</a>
+    <a class="layui-btn layui-btn-xs layui-bg-red" lay-event="packageFile">打包文件</a>
+    <a class="layui-btn layui-btn-xs layui-bg-red" lay-event="download">下载文件</a>
+</script>
