@@ -16,7 +16,7 @@ import java.util.List;
  **/
 public interface RecordRepository  extends CrudRepository<Record, String> {
 
-    List<Record> findByJobId(String jobId);
+      List<Record> findByJobId(String jobId);
 
 //    @Query(value = "select new com.layman.tool.pojo.PostStudentPojo(student_id, student_name) from t_record where job_id = ?1")
 //    List<PostStudentPojo> getPostStudent(String jobId);

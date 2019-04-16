@@ -1,6 +1,7 @@
 package com.layman.tool.controller;
 
 import ch.qos.logback.core.util.FileUtil;
+import com.layman.tool.entity.Record;
 import com.layman.tool.entity._Class;
 import com.layman.tool.service.CommissaryService;
 import com.layman.tool.utils.IOtools;
@@ -146,14 +147,21 @@ public class CommissaryController {
     }
 
     // 统计收集信息
-    @ResponseBody
     @RequestMapping("/getDetail")
-    public ToolResult getJobDetail(String jobId, String clazzNum) {
+    public String getJobDetail(String jobId, String clazzNum,Model model) {
         try {
-            return commissaryService.getJobDetail(jobId, clazzNum);
+            List<Record> recordList = (List<Record>) commissaryService.getSubmittedStudentByJobId(jobId);
+            model.addAttribute("alreadySubmitted", recordList);
+
+            List<String> ids = new ArrayList<>();
+            for(Record record:recordList){
+                ids.add(record.getStudentId());
+            }
+            model.addAttribute("unsubmitted", commissaryService.findByNumberNotIn(ids));
+            return "commissary/detail";
         } catch (Exception e) {
             e.printStackTrace();
-            return ToolResult.build(404, "获取数据失败");
+            return "commissary/detail";
         }
     }
 

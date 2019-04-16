@@ -5,6 +5,7 @@ import com.layman.tool.dao.JobRepository;
 import com.layman.tool.dao.RecordRepository;
 import com.layman.tool.dao.StudentRepository;
 import com.layman.tool.entity.Job;
+import com.layman.tool.entity.Record;
 import com.layman.tool.entity.Student;
 import com.layman.tool.entity._Class;
 import com.layman.tool.service.CommissaryService;
@@ -26,8 +27,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipOutputStream;
 
 
 /**
@@ -234,15 +233,16 @@ public class CommissaryServiceImpl implements CommissaryService {
     }
 
     @Override
-    public ToolResult getJobDetail(String jobId, String clazzNum) {
+    public List<Record> getJobDetail(String jobId, String clazzNum) {
         try {
-            List<Student> allStudent = studentRepository.findAllByClassNumOrderByNumber(clazzNum);
+              List<Record> allStudent = recordRepository.findByJobId(jobId);
+//            List<Student> allStudent = studentRepository.findAllByClassNumOrderByNumber(clazzNum);
 //            List<Record> recordList = recordRepository.findByJobId(jobId);
 //            List<PostStudentPojo> postStudentPojoList = recordRepository.getPostStudent(jobId);
-            return null;
+              return allStudent;
         } catch (Exception e) {
             e.printStackTrace();
-            return ToolResult.build(404, "获取数据失败");
+            return null;
         }
     }
 
@@ -282,5 +282,16 @@ public class CommissaryServiceImpl implements CommissaryService {
             e.printStackTrace();
             return ToolResult.build(404, "截止失败");
         }
+    }
+
+    @Override
+    public List<Record> getSubmittedStudentByJobId(String jobId) {
+        List<Record> alreadySubmitted = recordRepository.findByJobId(jobId);
+        return alreadySubmitted;
+    }
+
+    @Override
+    public List<Student> findByNumberNotIn(List<String> ids) {
+        return studentRepository.findByNumberNotIn(ids);
     }
 }

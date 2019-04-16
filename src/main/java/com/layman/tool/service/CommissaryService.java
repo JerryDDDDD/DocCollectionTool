@@ -1,5 +1,6 @@
 package com.layman.tool.service;
 
+import com.layman.tool.entity.Record;
 import com.layman.tool.entity._Class;
 import com.layman.tool.utils.ToolResult;
 import org.springframework.web.multipart.MultipartFile;
@@ -26,11 +27,15 @@ public interface CommissaryService {
 
     ToolResult getJobList();
 
-    ToolResult getJobDetail(String jobId, String clazzNum);
+    List<Record> getJobDetail(String jobId, String clazzNum);
 
     void download(String jobId, HttpServletRequest request, HttpServletResponse response);
 
     ToolResult packageFile(String jobId);
 
     ToolResult deadLine(String jobId);
+
+    Object getSubmittedStudentByJobId(String jobId);
+
+    Object findByNumberNotIn(List<String> ids);
 }

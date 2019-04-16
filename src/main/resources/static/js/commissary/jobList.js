@@ -72,28 +72,13 @@ layui.use(['table', 'layer'], function () {
         switch (obj.event) {
             // 查看拍品公告更多信息
             case "detail": {
-                // layer.confirm('您确定要删除该友情链接:吗?', {
-                //     btn: ['确定', '取消'] //按钮
-                // }, function (index) {
-                //     //发送删除请求到后台
-                //     $.ajax({
-                //         url: "/admin/friendLink/delFriendLink",
-                //         type: "post",
-                //         data: {
-                //             friendLinkId: data.id
-                //         },
-                //         async: false,
-                //         success: function () {
-                //             table.reload('friendLinkTable');
-                //         },
-                //         error: function () {
-                //
-                //         }
-                //     });
-                //     layer.close(index);
-                // }, function () {
-                //     return;
-                // });
+                layer.open({
+                    type: 2,
+                    area: ['1000px', '600px'],
+                    content: "/commissary/getDetail?jobId="+data.id+"&"+"clazzNum="+data.jobClass,
+                    success: function () {
+                    }
+                });
                 break;
             }
             case "deadLine": {

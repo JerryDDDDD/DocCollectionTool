@@ -14,4 +14,6 @@ import java.util.List;
  **/
 public interface StudentRepository extends CrudRepository<Student, String> {
     List<Student> findAllByClassNumOrderByNumber(String classNum);
+
+    List<Student> findByNumberNotIn(List<String> ids);
 }
